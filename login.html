@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
     <link rel="stylesheet" href="signUp.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="app/login.js"></script>
 </head>
 
 
 <body>
   <div class="wrapper">
     <div class="title"> <span>Login</span></div>
-    <form action="#">
+    <form action="#" id="input_form" onsubmit="submitForm(event)">
       <div class="row">
         <input type="text" id="name" placeholder="Username" onkeyup="nameValidation()">
       </div>
@@ -31,7 +33,7 @@
        
     </form>
   </div>
-  <script src="script.js"></script>
+
 </body>
 
 </html>

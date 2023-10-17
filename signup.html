@@ -1,21 +1,18 @@
-<?php
-include("connection.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="signUp.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <link rel="stylesheet" href="signUp.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="app/script.js"></script>
 </head>
 
 <body>
   <div class="wrapper">
     <div class="title"> <span>Sign Up Form</span></div>
-    <form action="#" id="input_form">
+    <form id="input_form" onsubmit="submitForm(event,this)">
       <div class="row">
         <input type="text" id="name" name="user" placeholder="Username" onkeyup="nameValidation()">
       </div>
@@ -41,7 +38,8 @@ include("connection.php");
         <p>Password required</p>
       </div>
       <div class="row">
-        <input type="password" id="confirm-pass" name="cpass" placeholder="Confirm Password" onkeyup="confirmPassValidation()">
+        <input type="password" id="confirm-pass" name="cpass" placeholder="Confirm Password"
+          onkeyup="confirmPassValidation()">
       </div>
       <div class="confirmPasswordError">
         <p>Must match password</p>
@@ -52,28 +50,14 @@ include("connection.php");
           <p>Image size must be less than 50 KB</p>
         </div>
         <label for="input-file" onclick="updateImage()">Update Image</label>
-        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+        <input type="file" name="image" accept="image/jpeg, image/png, image/jpg" id="input-file">
       </div>
       <div class="row button">
         <input type="submit" onclick="" value="Sign Up" name="signUp_button">
       </div>
-       
+
     </form>
   </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-$("submit").on('click',function(){
-  $.ajax({
-    url:'http://localhost/CRUD/upSign.php',
-    type: 'POST',
-    data: $("#input_form").serialize(),
-    success: function(response) {
-
-    }
-  })
-})
-</script>
-<script src="script.js"></script>
 </body>
 
 </html>
