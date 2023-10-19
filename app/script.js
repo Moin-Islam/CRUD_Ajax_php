@@ -111,7 +111,7 @@ function submitForm(e, form) {
       } else if (res.status == 200) {
         alert(res.message); 
       }
-      window.open("login.html", "_self");
+      //window.open("login.html", "_self");
     },
   });
 }
