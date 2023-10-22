@@ -1,6 +1,28 @@
-/*function getFileSizeInKB(file) {
-    return file.size / 1024;
-}*/
+const userId = new URLSearchParams(window.location.search).get("user_id");
+const userName = new URLSearchParams(window.location.search).get("name");
+const email = new URLSearchParams(window.location.search).get("email");
+const password = new URLSearchParams(window.location.search).get("password");
+const image = new URLSearchParams(window.location.search).get("image");
+
+const nameField =document.querySelector("#name");
+const emailField =document.querySelector("#email");
+const passwordField =document.querySelector("#pass");
+const imageField =document.querySelector("#profile-pic");
+
+nameField.value = userName;
+emailField.value = email;
+passwordField.value = password;
+imageField.src = image;
+document.querySelector("#confirm-pass").value = password;
+
+
+// document.querySelector("#name").value = userName;
+// document.querySelector("#email").value = email;
+// document.querySelector("#pass").value = password;
+// document.querySelector("#confirm-pass").value = password;
+// document.querySelector("#profile-pic").src = image;
+
+
 
 function updateImage() {
   let profilePic = document.getElementById("profile-pic");
@@ -82,37 +104,31 @@ function confirmPassValidation() {
 }
 
 function submitForm(e, form) {
-  e.preventDefault();
-  //let formData = [];
-  //for (const element of form.elements) {
-  //if (element.name)
-  //formData[element.name] = element.value;
-  //}
-  // formData = Object.assign({}, formData);
-  //console.log(formData);
-
-  const imageFile = document.getElementById("input-file").files[0];
-  var form = document.getElementById("input_form");
-  var formData = new FormData(form);
-  formData.append("image", imageFile);
-  //console.log(formData);
-  // For this method we have to set data process data false and content type false to pass the formdata in POST request
-  $.ajax({
-    url: "../api/signuplogic.php",
-    method: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (response) {
-      var res = JSON.parse(response);
-      console.log(res);
-      if (res.status == 500) {
-        alert(res.message);
-      } else if (res.status == 200) {
-        alert(res.message); 
-        window.open("login.html", "_self");
-      }
-
-    },
-  });
-}
+    e.preventDefault();
+  
+    const imageFile = document.getElementById("input-file").files[0];
+    var form = document.getElementById("input_form");
+    var formData = new FormData(form);
+    console.log(imageFile);
+    formData.append("image", imageFile);
+    formData.append("user_id", userId);
+    //console.log(formData);
+    // For this method we have to set data process data false and content type false to pass the formdata in POST request
+    $.ajax({
+      url: "../api/updateinfo.php",
+      method: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function () {
+       /* var res = JSON.parse(response);
+        console.log(res);
+        if (res.status == 500) {
+          alert(res.message);
+        } else if (res.status == 200) {
+          alert(res.message); 
+        }*/
+        window.open("dashboard.html", "_self");
+      },
+    });
+  }
